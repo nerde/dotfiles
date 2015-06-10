@@ -75,7 +75,11 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}$(collapse_pwd)%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
+prompt_char() {
+  echo "%(?,%{$fg_bold[green]%},%{$fg_bold[red]%})›%{$reset_color%}"
+}
+
+export PROMPT=$'\n[$(date "+%H:%M:%S")] $(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n$(prompt_char) '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
